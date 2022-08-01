@@ -1,4 +1,4 @@
-utu//Arquivo de Implementações
+//Arquivo de Implementações
 #include "FloatVector.h"
 
 struct FloatVector
