@@ -5,7 +5,7 @@ struct FloatVector
 {
     int capacity; //numero maximo de elemento
     int size; //qtde atual de elementos
-    int *data; //vetor de floats
+    float *data; //vetor de floats
 };
 
 FloatVector *create(int tam)
@@ -23,4 +23,11 @@ void destroy(FloatVector **vet_ref)
     FloatVector *vet = vet_ref;
     free(vet->data);
     free(vet);
+};
+
+int size(const FloatVector *vector)
+{
+  
 }
+
+
