@@ -35,3 +35,19 @@ void printvetor(const int *vetor, int size)
     printf("\n");
 
 }
+
+void selection (int vetor[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        int menor = i; //armazena só o inidice
+        for (int j = i; j < size; j++) 
+        {
+            if(vetor[j] < vetor [menor])
+              {
+                menor = j;
+              }      
+        }
+    swap(&vetor[i], &vetor [menor]);    
+    }
+}
