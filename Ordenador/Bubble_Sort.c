@@ -5,37 +5,8 @@
 #include <string.h>
 #include <time.h>
 #include <conio.h>
+#include "ordenacao.h"
 
-void swap(int *a, int *b)
-{
-  int aux = *a;
-  *a = *b;
-  *b = aux;
-}
-
-void bubble(int vetor[], int size)
-{
-    for (int i = 0; i < size - 1; i++)
-    {
-        for (int j = 0; j < size - 1; j++)
-        {
-           if (vetor[j] > vetor[j + 1])
-           {
-            swap(&vetor[j], &vetor[j + 1]);
-           }
-        }
-    }
-}
-
-void printvetor(const int *vetor, int size)
-{
-    for (int i = 0; i < 9; i++)
-    {
-        printf("%d ", vetor[i]);
-    }
-    printf("\n");
-
-}
 
 int main()
 
@@ -45,7 +16,13 @@ int main()
     
     tInicio = clock();
 
-    int vetor[100000] = {rand() % 100000};
+    int size = 100000;
+    int vetor[100000];
+
+    for(int i = 0; i < size; i++)
+    {
+        vetor[i] = rand() % 100000;
+    }
 
     bubble(vetor, 100000);
     //printvetor(vetor, 9);
