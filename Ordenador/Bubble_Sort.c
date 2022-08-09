@@ -57,5 +57,6 @@ int main()
     printf("Tempo gasto: %f s\n", tempo_gasto);
 
 return 0;
+
 }
 
