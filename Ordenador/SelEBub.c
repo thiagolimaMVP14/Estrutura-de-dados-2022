@@ -19,6 +19,7 @@ int main()
         bubbleVetor[i] = rand() % 100000; 
     }
 
+    
     bubble(bubbleVetor, size);
     selection(selectionVetor, size);
 
