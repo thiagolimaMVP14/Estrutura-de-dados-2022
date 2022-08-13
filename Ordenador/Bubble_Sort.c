@@ -41,6 +41,9 @@ int main()
  
     printf("Tempo gasto: %f s\n", tempo_gasto);
 
+    free(vetor);
+    vetor = NULL;
+
 return 0;
 
 }
