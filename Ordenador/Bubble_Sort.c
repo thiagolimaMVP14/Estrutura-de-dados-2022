@@ -31,6 +31,7 @@ int main()
     bubble(vetor, 100000);
     //printvetor(vetor, 9);
     
+    
 
     //Fim da contagem de tempo
     tFim = clock();
