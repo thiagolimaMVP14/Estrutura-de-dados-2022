@@ -54,8 +54,8 @@ void bubble(int vetor[], int size)
 bubbleFinal = clock();
 bubbleTime = ((double)(bubbleFinal - bubbleInicio) / CLOCKS_PER_SEC);
 
-printf("Tempo total gasto: %f segundos", bubbleTime);
-printf("\nTrocas: %d\nComparacoes: %d\n,Varreduras: %d\n", troca, comparacao, varredura);
+fprintf(arq"Tempo total gasto: %f segundos", bubbleTime);
+fprintf(arq"\nTrocas: %d\nComparacoes: %d\n,Varreduras: %d\n", troca, comparacao, varredura);
 
 
 void selection (int vetor[], int size)
@@ -99,11 +99,13 @@ void selection (int vetor[], int size)
         }
     varredura++;    
 }
-    selectionFinal = clock();
-    selectionTime = ((double) (selectionFinal - selectionInicio)/ CLOCKS_PER_SEC);
+}
+    
+selectionFinal = clock();
+selectionTime = ((double) (selectionFinal - selectionInicio)/ CLOCKS_PER_SEC);
 
-  printf("Tempo total gasto: %f segundos", selectionTime);
-  printf("\nTrocas: %d\nComparacoes: %d\n,Varreduras: %d\n", troca, comparacao, varredura);
+fprintf(arq"Tempo total gasto: %f segundos", selectionTime);
+fprintf(arq"\nTrocas: %d\nComparacoes: %d\n,Varreduras: %d\n", troca, comparacao, varredura);
 
     
 
