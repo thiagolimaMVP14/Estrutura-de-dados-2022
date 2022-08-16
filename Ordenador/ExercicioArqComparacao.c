@@ -24,6 +24,5 @@ int main()
     bubbleVetor = NULL;
     selectionVetor = NULL;
 
-
     return 0;
 }
