@@ -5,7 +5,7 @@
 #include <string.h>
 #include <time.h>
 #include <conio.h>
-#include "ordenacao.h"
+#include "Tads_ordenacao.h"
 
 
 int main()
@@ -18,19 +18,25 @@ int main()
     tInicio = clock();
 
     //define o tamanho do vetor
-    int size = 100000;
-    int vetor[100000];
-
+    int size = 8, x = 0;
+    
     //criação do vetor
-    for(int i = 0; i < size; i++)
+    
+    int *vetor = (int *) malloc(size * sizeof(int));
+ 
+    printf("Vetor sem ordenacao:");
+    while(x < size)
     {
-        vetor[i] = rand() % 100000;
+      *(vetor + x) =  rand() % 10;
+      printf("[%d]", *(vetor + x));
+      x++;
     }
 
     //chamando as funções
+    selection(vetor, size);
+    printf("\n\nVetor com ordenacao");
+    printvetor(vetor, size);
     
-    //printvetor(vetor, 9);
-    selection(vetor, 100000);
     
 
     //Fim da contagem de tempo
@@ -41,6 +47,9 @@ int main()
  
     printf("Tempo gasto: %f s\n", tempo_gasto);
 
-return 0;
 
+    free(vetor);
+    vetor = NULL;
+
+return 0;
 }
