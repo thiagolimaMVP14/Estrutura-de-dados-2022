@@ -56,7 +56,7 @@ bTotal = ((float)(bFinal - bInicio) / CLOCKS_PER_SEC);
 
 fprintf(arq,"\nBubble Sort:");
 fprintf(arq,"\nTempo total gasto: %f segundos", bTotal);
-fprintf(arq,"\nTrocas: %d\nComparacoes: %d\n,Varreduras: %d\n", troca, comparacao, varredura);
+fprintf(arq,"\nTrocas: %d\nComparacoes: %d\nVarreduras: %d\n", troca, comparacao, varredura);
 }
 
 void selection (int *vetor, int size, FILE *arq)
@@ -123,7 +123,7 @@ void merge (int array[], int inicio, int meio, int fim)
 
     for(int i = 0; i < n2; i++)
     {
-        R[i] = array[inicio + i];
+        R[i] = array[meio + i];
     }
 
     int i = 0, j = 0, k = 0;
@@ -174,8 +174,7 @@ void printvetor(const int *vetor, int size)
 {
     for (int i = 0; i < 9; i++)
     {
-        printf("%d ", vetor[i]);
+        printf("%d ", *(vetor + i));
     }
     printf("\n");
-
 }
