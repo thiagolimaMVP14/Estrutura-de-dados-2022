@@ -13,11 +13,12 @@ void bubble(int *vetor, int size, FILE *arq);
 //o menor valor e armazenado na primeira posicao depois do menor valor anterior
 void selection(int *vetor, int size, FILE *arq);
 
-void merge(int array[], int inicio, int meio, int fim);
-int mergesort(int array[], int inicio, int fim);
+void merge(int *vetor, int inicio, int meio, int fim);
+
+void mergesort(int *vetor, int inicio, int fim);
 
 
 //printa o vetor ja ordenado
-void printvetor(const int *vetor, int size);
+void printvetor(int *vetor, int size);
 
 

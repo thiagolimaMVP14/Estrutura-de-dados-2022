@@ -108,73 +108,68 @@ fprintf(arq,"\nTempo total gasto: %f segundos", sTotal);
 fprintf(arq,"\nTrocas: %d\nComparacoes: %d\n,Varreduras: %d\n", troca, comparacao, varredura);
 }
     
-void merge (int array[], int inicio, int meio, int fim)
+void merge(int *vetor, int inicio, int meio, int fim)
 {
-    int n1 = meio - inicio + 1;
-    int n2 = fim - meio;
+    int tamanho, n1, n2, *temp, i, j, k;
+    int fim1 = 0, fim2 = 0;
+    
+    tamanho = fim - inicio + 1;
+    n1 = inicio;
+    n2 = meio + 1;
+    temp = (int *)malloc(tamanho * sizeof(int));
 
-    int L[n1];
-    int R[n2];
-
-    for(int i = 0; i < n1; i++)
+    if(temp != NULL)
     {
-        L[i] = array[inicio + i];
-    }
-
-    for(int i = 0; i < n2; i++)
-    {
-        R[i] = array[meio + i];
-    }
-
-    int i = 0, j = 0, k = 0;
-    while (i < n1 && j < n2)
-    {
-        if (L[i] <= R[j])
+        for(i = 0; i < tamanho; i++)
         {
-            array[k] = L[i];
-            i++;
-        }else
-        {
-            array[k] = R[j];
-            j++;
+            if (!fim1 && !fim2)
+            {
+                if (vetor[n1] < vetor[n2])
+                   temp[i] = vetor[n1++];
+                else
+                   temp[i] = vetor[n2++];
+            
+                if (n1 > meio)
+                   fim1 = 1;
+                if(n2 > meio)
+                   fim2 = 2;   
+            }else
+                {
+                    if(!fim1)
+                       temp[i] = vetor[n1++];
+                    else
+                       temp[i] = vetor[n2++];
+                }
+            
         }
-        k++;
+        for (j = 0, k = inicio; j < tamanho; j++, k++)
+        {
+            vetor[k] = temp[j];
+        }     
     }
-    while (j < n2)
-    {
-        array[k] = R[j];
-        j++;
-        k++;
-    }
-    while (i < n1)
-    {
-        array[k] = L[i];
-        i++;
-        k++;
-    }
-
+    free(temp);    
 }
 
 
-int mergesort(int array[], int inicio, int fim)
+
+void mergesort(int *vetor, int inicio, int fim)
 {
     if(inicio < fim)
     {
-        int meio = inicio + (fim - inicio)/2;
-        
-        
-        mergesort(array, inicio, meio);
-        mergesort(array, meio + 1, fim);
-        merge(array, inicio, meio, fim);
+        int meio = ((inicio + fim) /2);
+                
+        mergesort(vetor, inicio, meio);
+        mergesort(vetor, meio + 1, fim);
+        merge(vetor, inicio, meio, fim);
     }
 }
 
 
-void printvetor(const int *vetor, int size)
+void printvetor(int *vetor, int size)
 {
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < size; i++)
     {
-        printf("%d ", *(vetor + i));
+        printf("%d ", vetor[i]);
     }
     printf("\n");
 }

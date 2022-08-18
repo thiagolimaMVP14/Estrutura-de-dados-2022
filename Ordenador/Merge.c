@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include "Tads_ordenacao.h"
 
-int mergesort(int array[], int inicio, int fim);
-void merge(int array[], int inicio, int meio, int fim);
+void mergesort(int *vetor, int inicio, int fim);
+void merge(int *vetor, int inicio, int meio, int fim);
 
 
 
@@ -12,16 +12,16 @@ int main()
 {
     int TAM = 8;
 
-    int array[TAM];
+    int vetor[TAM];
 
     for(int i = 0; i < TAM; i++)
     {
-        array[i] = rand() % 10;
+        vetor[i] = rand() % 10;
     }
 
-    printvetor(array, TAM);
-    mergesort(array, 0, TAM - 1);
-    printvetor(array, TAM);
+    printvetor(vetor, TAM);
+    mergesort(vetor, 0, TAM - 1);
+    printvetor(vetor, TAM);
 
 return 0;
 }
