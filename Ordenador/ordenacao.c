@@ -108,47 +108,7 @@ fprintf(arq,"\nTempo total gasto: %f segundos", sTotal);
 fprintf(arq,"\nTrocas: %d\nComparacoes: %d\n,Varreduras: %d\n", troca, comparacao, varredura);
 }
     
-void merge(int *vetor, int inicio, int meio, int fim)
-{
-    int tamanho, n1, n2, *temp, i, j, k;
-    int fim1 = 0, fim2 = 0;
-    
-    tamanho = fim - inicio + 1;
-    n1 = inicio;
-    n2 = meio + 1;
-    temp = (int *)malloc(tamanho * sizeof(int));
 
-    if(temp != NULL)
-    {
-        for(i = 0; i < tamanho; i++)
-        {
-            if (!fim1 && !fim2)
-            {
-                if (vetor[n1] < vetor[n2])
-                   temp[i] = vetor[n1++];
-                else
-                   temp[i] = vetor[n2++];
-            
-                if (n1 > meio)
-                   fim1 = 1;
-                if(n2 > meio)
-                   fim2 = 2;   
-            }else
-                {
-                    if(!fim1)
-                       temp[i] = vetor[n1++];
-                    else
-                       temp[i] = vetor[n2++];
-                }
-            
-        }
-        for (j = 0, k = inicio; j < tamanho; j++, k++)
-        {
-            vetor[k] = temp[j];
-        }     
-    }
-    free(temp);    
-}
 
 
 
@@ -156,13 +116,55 @@ void mergesort(int *vetor, int inicio, int fim)
 {
     if(inicio < fim)
     {
-        int meio = ((inicio + fim) /2);
+        int meio = (inicio + (fim - inicio) / 2);
                 
         mergesort(vetor, inicio, meio);
         mergesort(vetor, meio + 1, fim);
         merge(vetor, inicio, meio, fim);
     }
 }
+
+void merge(int *vetor, int inicio, int meio, int fim)
+{
+    int n1 = meio - inicio + 1;
+    int n2 = fim - meio;
+
+    int L[n1], M[n2];
+
+    for (int i = 0; i < n1; i++)
+        L[i] = vetor[inicio + i];
+
+    for (int j = 0; j < n2; j++)
+        M[j] = vetor[meio + 1 + j];  
+
+    int i, j, k;
+    i = 0;
+    j = 0;
+    k = inicio;
+
+    while (i < n1 && j < n2) {
+        if (L[i] <= M[j]) {
+            vetor[k] = L[i];
+            i++;
+        } else {
+            vetor[k] = M[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        vetor[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        vetor[k] = M[j];
+        j++;
+        k++;
+    }
+}  
 
 
 void printvetor(int *vetor, int size)
