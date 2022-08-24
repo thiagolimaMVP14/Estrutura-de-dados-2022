@@ -167,11 +167,11 @@ void merge(int *vetor, int inicio, int meio, int fim)
 }  
 
 
-void printvetor(int *vetor, int size)
+void printvetor(const int *vetor, int size)
 {
     for (int i = 0; i < size; i++)
     {
-        printf("%d ", vetor[i]);
+        printf("%d ", *(vetor + i));
     }
     printf("\n");
 }

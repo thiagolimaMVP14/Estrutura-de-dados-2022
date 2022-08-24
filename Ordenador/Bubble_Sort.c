@@ -11,6 +11,10 @@
 int main()
 
 {   
+
+    FILE *arq;
+    arq = fopen("Dados_dos_Ordenadores.csv", "a"); 
+    
     clock_t tInicio, tFim;
     float tempo_gasto;
     
@@ -33,7 +37,7 @@ int main()
    
 
     //chamando as funções
-    bubble(vetor, size);
+    bubble(vetor, size, arq);
     printf("\n\nVetor com ordenacao:");
     printvetor(vetor, size);
     

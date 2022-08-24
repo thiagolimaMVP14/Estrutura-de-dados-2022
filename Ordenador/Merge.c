@@ -6,44 +6,48 @@
 
 void merge(int *vetor, int inicio, int meio, int fim);
 void mergesort(int *vetor, int inicio, int fim);
-void printmerge(int *vetor, int size)
-{   
-  for (int i = 0; i < size; i++)
-    printf("%d ", vetor[i]);
-  printf("\n");
 
-}
 
 
 int main()
 {
-
-   clock_t tInicio, tFim;
-   float tempo_gasto;
-
-
-   tInicio = clock();
     
-   int TAM = 500000;
+   //FILE *arq;
 
-   int vetor[TAM];
+   //arq = fopen("Dados_dos_Ordenadores.csv", "a"); 
 
-   for(int i = 0; i < TAM; i++)
+   time_t mInicio, mFim;
+   float tempo_gasto;
+   
+   //dados *info_merge;
+   //info_merge = dadoscriar();
+
+   
+    
+   int TAM = 550000, t = 0;
+
+   int *vetor = (int*) malloc(TAM * sizeof(int));
+
+   while(t < TAM)
     {
-    vetor[i] = rand() % 500000;
+    *(vetor + t) = rand() % 550000;
+    t++;
     }
-
-   //printmerge(vetor, TAM);
+   
+   mInicio = clock();
    mergesort(vetor, 0, TAM - 1);
-   //printmerge(vetor, TAM);
-   printf("Tempo");
-   tFim = clock();
+   mFim = clock();
+   //printvetor(vetor, TAM);
+   tempo_gasto = (((float)(mFim - mInicio)) / CLOCKS_PER_SEC);
 
-   tempo_gasto = ((float)(tFim - tInicio)) / CLOCKS_PER_SEC;
+   //dadosImprimir(info_merge, arq, tempo_gasto, TAM);
  
    printf("Tempo gasto: %fs\n", tempo_gasto);
-   printf("Tempo");
 
+   free(vetor);
+   //liberarDados(info_merge);
+
+   vetor = NULL;
   
 
 return 0;

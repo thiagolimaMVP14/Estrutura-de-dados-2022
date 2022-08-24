@@ -1,4 +1,6 @@
 //ASSINATURAS
+typedef struct DADOS dados;
+
 
 //Faz a troca dos valores no vetor
 void swap(int *a, int *b);
@@ -17,8 +19,12 @@ void merge(int *vetor, int inicio, int meio, int fim);
 
 void mergesort(int *vetor, int inicio, int fim);
 
+dados *dadosCriar();
+void dadosPrint(dados *dado, FILE *arq, float tempo, int size);
+void dadosLiberar(dados *dado);
+
 
 //printa o vetor ja ordenado
-void printvetor(int *vetor, int size);
+void printvetor(const int *vetor, int size);
 
 
