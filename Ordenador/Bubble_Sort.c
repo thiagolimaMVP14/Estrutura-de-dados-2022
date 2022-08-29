@@ -22,12 +22,11 @@ int main()
     tInicio = clock();
 
     //define o tamanho do vetor
-    int size = 8, t = 0;
+    int size = 100, t = 0;
     
     //criação do vetor
     int *vetor = (int *) malloc(size * sizeof(int));
 
-    printf("Vetor sem ordenacao:");
     while(t < size)
     {
       *(vetor + t) =  rand() % 10;
@@ -35,13 +34,11 @@ int main()
       t++;
     }
    
+    //inicio da contagem de tempo gasto
+    tInicio = clock();
 
     //chamando as funções
-    bubble(vetor, size, arq);
-    printf("\n\nVetor com ordenacao:");
-    printvetor(vetor, size);
-    
-    
+    bubble(vetor, size, arq);        
 
     //Fim da contagem de tempo
     tFim = clock();

@@ -17,7 +17,7 @@ int main()
    //arq = fopen("Dados_dos_Ordenadores.csv", "a"); 
 
    time_t mInicio, mFim;
-   float tempo_gasto;
+   double tempo_gasto;
    
    //dados *info_merge;
    //info_merge = dadoscriar();
@@ -38,7 +38,7 @@ int main()
    mergesort(vetor, 0, TAM - 1);
    mFim = clock();
    //printvetor(vetor, TAM);
-   tempo_gasto = (((float)(mFim - mInicio)) / CLOCKS_PER_SEC);
+   tempo_gasto = (((double)(mFim - mInicio)) / CLOCKS_PER_SEC);
 
    //dadosImprimir(info_merge, arq, tempo_gasto, TAM);
  

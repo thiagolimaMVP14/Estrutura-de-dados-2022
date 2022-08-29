@@ -11,6 +11,9 @@
 int main()
 
 {   
+    FILE *arq;
+    arq = fopen("Dados_dos_Ordenadores.csv", "a"); 
+
     clock_t tInicio, tFim;
     double tempo_gasto;
     
@@ -32,13 +35,10 @@ int main()
       x++;
     }
 
+    //inicio da contagem de tempo gasto
+    tInicio = clock();
     //chamando as funções
-    selection(vetor, size);
-    printf("\n\nVetor com ordenacao");
-    printvetor(vetor, size);
-    
-    
-
+    selection(vetor, size, arq);
     //Fim da contagem de tempo
     tFim = clock();
 
