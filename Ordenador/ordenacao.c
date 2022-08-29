@@ -112,58 +112,92 @@ fprintf(arq,"\nTrocas: %d\nComparacoes: %d\n,Varreduras: %d\n", troca, comparaca
 
 
 
-void mergesort(int *vetor, int inicio, int fim)
+int mergesort(int *vetor, int inicio, int fim)
 {
     if(inicio < fim)
     {
+        //para toda vez que uma instancia dessa funcao e chamada
+        //ele gera um novo meio e inicia novamente a recursividade
         int meio = (inicio + (fim - inicio) / 2);
                 
         mergesort(vetor, inicio, meio);
         mergesort(vetor, meio + 1, fim);
+
+        //quando inicio = fim a funcao termina sua instancia e retorna para instancia anterior
+        //nesse retorno o segundo mergesort e chamado realizando o mesmo caminho da linha acima  
+        //terminando as duas metades o merge e chamado realizando assim a ordenacao entre as duas mergesort dessa instancia
+        //o processo se repete ate todas as instancias serem realizadas e terminar o primeiro mergesort chamado, com o vetor ordenado
+
         merge(vetor, inicio, meio, fim);
     }
 }
 
 void merge(int *vetor, int inicio, int meio, int fim)
 {
+    //n1 e n2 fazem parametro de comprimento para as metades dos vetores
+
     int n1 = meio - inicio + 1;
     int n2 = fim - meio;
 
-    int L[n1], M[n2];
+
+    //referencias para ordenar ao vetor principal
+    //e atribuir ao vetor principal tambem
+    int *LVet, *MVet;
+
+    LVet = (int *)calloc(n1, sizeof(int));
+    MVet = (int *)calloc(n2, sizeof(int));
+
 
     for (int i = 0; i < n1; i++)
-        L[i] = vetor[inicio + i];
+        *(LVet + i) = *(vetor + (inicio + i));
 
     for (int j = 0; j < n2; j++)
-        M[j] = vetor[meio + 1 + j];  
+        *(MVet + j) = *(vetor + (inicio + j));
 
-    int i, j, k;
-    i = 0;
-    j = 0;
-    k = inicio;
+    //Variaveis de controle
+    //i = posicao de referencia para a 1° metade
+    //j = posicao de referencia para a 2° metade
+    //k = posicao de referencia para o principal
+    
+    int i = 0, j = 0, k = inicio;
 
-    while (i < n1 && j < n2) {
-        if (L[i] <= M[j]) {
-            vetor[k] = L[i];
-            i++;
-        } else {
-            vetor[k] = M[j];
-            j++;
-        }
-        k++;
-    }
+    while (i < n1 && j < n2) 
+    {
+        dado -> comparacoes++;
 
+    //realiza a troca para o menor valor da posicao de referencia
+
+        if(*(LVet + i) <= *(MVet + j))
+           {
+            *(vetor + k) = *(LVet + i);
+            dado -> trocas++;
+           }
+        else
+            {
+             *(vetor + k) = *(MVet + j);
+               dado -> trocas++;
+               j++;
+            } 
+            k++;
+        } 
+    //atribui os valores das posicoes para, o vetor principal, do vetor que nao chegou ao fim
     while (i < n1) {
-        vetor[k] = L[i];
+        *(vetor + k) = *(LVet + i);
+        dado -> trocas++;
         i++;
         k++;
     }
 
     while (j < n2) {
-        vetor[k] = M[j];
+        *(vetor + k) = *(MVet + j);
+        dado -> trocas++;
         j++;
         k++;
     }
+
+    dado -> varreduras++;
+    free(LVet);
+    free(MVet);
 }  
 
 
@@ -175,3 +209,25 @@ void printvetor(const int *vetor, int size)
     }
     printf("\n");
 }
+
+struct DADOS
+{
+    int trocas;
+    int varreduras;
+    int comparacoes;
+}dados;
+
+Dados *dadoscriar()
+{
+    Dados *inf = (Dados *) calloc(1, sizeof(Dados)); 
+}
+void dadosPrint(Dados *dado, FILE *arq, float tempo, int size)
+  {
+  fprintf(arq,"\n %d ; %f ; %d ; %d ; %d ", size, tempo, dado->trocas, dado->comparacoes, dado->varreduras);
+  }
+
+void dadosLiberar(Dados *dado)
+  {
+  free(dado);
+  dado=NULL;
+  }

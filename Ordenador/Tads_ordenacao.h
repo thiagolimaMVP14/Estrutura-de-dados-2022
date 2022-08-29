@@ -17,7 +17,7 @@ void selection(int *vetor, int size, FILE *arq);
 
 void merge(int *vetor, int inicio, int meio, int fim);
 
-void mergesort(int *vetor, int inicio, int fim);
+int mergesort(int *vetor, int inicio, int fim);
 
 dados *dadosCriar();
 void dadosPrint(dados *dado, FILE *arq, float tempo, int size);

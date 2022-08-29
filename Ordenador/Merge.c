@@ -4,48 +4,39 @@
 #include "Tads_ordenacao.h"
 #include <time.h>
 
-void merge(int *vetor, int inicio, int meio, int fim);
-void mergesort(int *vetor, int inicio, int fim);
-
-
-
 int main()
 {
-    
-   //FILE *arq;
-
-   //arq = fopen("Dados_dos_Ordenadores.csv", "a"); 
+   FILE *arq;
+   arq = fopen("Dados_dos_Ordenadores.csv", "a");
 
    time_t mInicio, mFim;
    double tempo_gasto;
    
-   //dados *info_merge;
-   //info_merge = dadoscriar();
+   dados *info_merge;
+   info_merge = dadoscriar();
 
    
     
-   int TAM = 550000, t = 0;
+   int TAM = 1000000, t = 0;
 
    int *vetor = (int*) malloc(TAM * sizeof(int));
 
-   while(t < TAM)
-    {
-    *(vetor + t) = rand() % 550000;
-    t++;
-    }
+   for(int i = 0; i < TAM; i++){
+      *(vetor + i) = rand() % TAM;
+   }
    
    mInicio = clock();
-   mergesort(vetor, 0, TAM - 1);
+   mergesort(vetor, 0, TAM - 1, info_merge);
    mFim = clock();
-   //printvetor(vetor, TAM);
+   
    tempo_gasto = (((double)(mFim - mInicio)) / CLOCKS_PER_SEC);
-
-   //dadosImprimir(info_merge, arq, tempo_gasto, TAM);
- 
    printf("Tempo gasto: %fs\n", tempo_gasto);
 
+   dadosImprimir(info_merge, arq, tempo_gasto, TAM);
+ 
+
    free(vetor);
-   //liberarDados(info_merge);
+   liberarDados(info_merge);
 
    vetor = NULL;
   
