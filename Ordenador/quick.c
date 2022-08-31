@@ -22,6 +22,7 @@ for(int n = 0; n < size; n++)
 quick_i = clock();
 quicksort(vet, inicio, fim, info);
 quick_f = clock();
+
 quick_t = ((float)(quick_f - quick_i) / CLOCKS_PER_SEC);
 
 printf("\n(TEMPO DE EXECUCAO): %f(s)\n", quick_t);
