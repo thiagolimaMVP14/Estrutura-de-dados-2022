@@ -21,17 +21,16 @@ int main()
     tInicio = clock();
 
     //define o tamanho do vetor
-    int size = 8, x = 0;
+    int size = 1000000, x = 0;
     
     //criação do vetor
     
     int *vetor = (int *) malloc(size * sizeof(int));
+
  
-    printf("Vetor sem ordenacao:");
     while(x < size)
     {
       *(vetor + x) =  rand() % 10;
-      printf("[%d]", *(vetor + x));
       x++;
     }
 

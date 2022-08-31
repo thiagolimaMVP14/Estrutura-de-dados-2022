@@ -1,45 +1,37 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<time.h>
 #include "Tads_ordenacao.h"
-#include <time.h>
 
 int main()
 {
-   FILE *arq;
-   arq = fopen("Dados_dos_Ordenadores.csv", "a");
+time_t merg_inicio, merg_final;
+float merg_total;
 
-   time_t mInicio, mFim;
-   double tempo_gasto;
-   
-   dados *info_merge;
-   info_merge = dadoscriar();
+dados *merge_info;
+merge_info = dadosCriar();
 
-   
-    
-   int TAM = 1000000, t = 0;
+int tamanho = 1000000; 
+int inicio = 0, fim = (tamanho - 1);
 
-   int *vetor = (int*) malloc(TAM * sizeof(int));
+int *merge_vector =(int *)malloc(tamanho * sizeof(int));
 
-   for(int i = 0; i < TAM; i++){
-      *(vetor + i) = rand() % TAM;
-   }
-   
-   mInicio = clock();
-   mergesort(vetor, 0, TAM - 1, info_merge);
-   mFim = clock();
-   
-   tempo_gasto = (((double)(mFim - mInicio)) / CLOCKS_PER_SEC);
-   printf("Tempo gasto: %fs\n", tempo_gasto);
+for(int g=0; g < tamanho; g++)
+  *(merge_vector + g) = rand() % tamanho;
 
-   dadosImprimir(info_merge, arq, tempo_gasto, TAM);
- 
+merg_inicio = clock();
+mergesort(merge_vector, inicio, fim, merge_info);
+merg_final = clock();
+merg_total = ((float)(merg_final - merg_inicio) / CLOCKS_PER_SEC);
 
-   free(vetor);
-   liberarDados(info_merge);
+printf("\nTempo gasto: %f s\n", merg_total);
 
-   vetor = NULL;
-  
+
+free(merge_vector);
+dadosLiberar(merge_info);
+
+
+merge_vector = NULL;
 
 return 0;
 }

@@ -13,7 +13,7 @@ int main()
 {   
 
     FILE *arq;
-    arq = fopen("Dados_dos_Ordenadores.csv", "a"); 
+    arq = fopen("Dados_dos_Ordenadores.txt", "a"); 
     
     clock_t tInicio, tFim;
     float tempo_gasto;
@@ -22,15 +22,14 @@ int main()
     tInicio = clock();
 
     //define o tamanho do vetor
-    int size = 100, t = 0;
+    int size = 100000, t = 0;
     
     //criação do vetor
     int *vetor = (int *) malloc(size * sizeof(int));
 
     while(t < size)
     {
-      *(vetor + t) =  rand() % 10;
-      printf("[%d]", *(vetor + t));
+      *(vetor + t) =  rand() % size;
       t++;
     }
    
