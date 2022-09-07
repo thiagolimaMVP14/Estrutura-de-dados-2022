@@ -20,4 +20,7 @@ void add_ordenado(LinkedList *L, int valor);
 
 void listaImprimir(LinkedList *L);
 
+void freelista(LinkedList *L);
+
+
 #endif 

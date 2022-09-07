@@ -49,7 +49,7 @@ void add_ultimo(LinkedList *L, int valor){
         while(aux ->prox != NULL){
             aux = aux -> prox;
         }
-    aux -> prox = LinkedList_iniciar(valor);      
+    aux -> prox = SNode_criar(valor);      
     }
 }
 
@@ -70,7 +70,7 @@ void add_meio (LinkedList *L, int pos, int valor){
             aux = aux -> prox;
 
             if(aux -> prox == NULL){
-                SNode *snode = LinkedList_iniciar(valor);
+                SNode *snode = SNode_criar(valor);
                 aux -> prox = snode;
                 L -> size++;
                 return;
@@ -102,7 +102,22 @@ void add_ordenado(LinkedList *L, int valor){
     }
 }
 
-void printlist(LinkedList *L){
+void freelista(LinkedList *L)
+{
+SNode *aux = L-> inicio, *marc;
+for(int f = 0; f <= L->size; f++)
+  {
+  marc = aux;
+  aux = aux->prox;
+  free(marc);
+  marc = NULL;
+  }
+
+free(L);
+L = NULL;
+}
+
+void listaImprimir(LinkedList *L){
     SNode *aux = L -> inicio;
     printf("Tamanho: %d\n", L -> size);
     while(aux != NULL){
